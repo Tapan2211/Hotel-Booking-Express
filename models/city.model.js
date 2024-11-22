@@ -38,8 +38,6 @@ const deleteCityById = async (id) => {
     console.log("CITY_MODEL_ID", id)
     const query = `DELETE FROM cities WHERE id = ?`;
     const [result] = await db.execute(query, [id]);
-
-    // Check if any rows were affected
     return result.affectedRows > 0;
 }
 

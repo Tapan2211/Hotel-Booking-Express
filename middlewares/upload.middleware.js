@@ -17,10 +17,8 @@ const fileFilter = (req, file, cb) => {
     const mimetype = allowedFileTypes.test(file.mimetype);
 
     if (extname && mimetype) {
-        // If file is valid, accept it
         cb(null, true);
     } else {
-        // Provide more detailed error feedback
         cb(new Error('Invalid file type. Only JPEG, JPG, and PNG files are allowed.'));
     }
 };

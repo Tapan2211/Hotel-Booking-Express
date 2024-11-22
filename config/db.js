@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise'); // Use promise-based API
+const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 dotenv.config();
 

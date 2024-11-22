@@ -37,25 +37,6 @@ const getHotelsByCityId = async (cityId) => {
     return results;
 };
 
-
-// const getAllCityByHotel = async () => {
-//     const query = `SELECT * FROM cityByHotel`;
-//     const [results] = await db.execute(query);
-//     return results;
-// }
-
-// const getCityByHotelById = async (id) => {
-//     const query = `SELECT * FROM cityByHotel WHERE id = ?`;
-//     const [result] = await db.execute(query, [id]);
-//     return result[0];
-// }
-
-// const getHotelsByCityId = async (cityId) => {
-//     const query = `SELECT * FROM cityByHotel WHERE cityId = ?`;
-//     const [results] = await db.execute(query, [cityId]);
-//     return results;
-// };
-
 const updateCityByHotelById = async (id, data) => {
     const query = `
     UPDATE cityByHotel

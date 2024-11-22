@@ -60,7 +60,6 @@ const getCityById = async (req, res) => {
             return res.status(404).json({ message: 'City not found' });
         }
 
-        // Prepend the base URL to the image path if it exists
         city.image = city.image ? `http ://localhost:3000/uploads/${product[0].image}` : null;
 
         res.status(200).json({ city });

@@ -1,4 +1,3 @@
-// validations/city.validation.js
 const Joi = require('joi');
 
 const cityValidation = {

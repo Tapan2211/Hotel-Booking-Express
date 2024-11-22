@@ -1,9 +1,7 @@
-// middlewares/authMiddleware.js
-
 const jwt = require('jsonwebtoken');
 
 const authenticateToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Bearer <token>
+    const token = req.headers['authorization']?.split(' ')[1];
     if (!token) {
         return res.status(403).json({ message: 'Access Denied: No token provided' });
     }
@@ -12,7 +10,7 @@ const authenticateToken = (req, res, next) => {
         if (err) {
             return res.status(403).json({ message: 'Access Denied: Invalid token' });
         }
-        req.user = user; // Attach user info to request object
+        req.user = user;
         next();
     });
 };

@@ -7,7 +7,6 @@ const validationMiddleware = require('../middlewares/registrationMiddleware');
 const cityValidation = require('../validations/city.validation');
 const upload = require('../middlewares/upload.middleware');
 
-// Route to create a new city with an image
 router.post('/create', upload.single('image'), validationMiddleware(cityValidation), cityController.createCity);
 router.get('/', cityController.getCities);
 router.get('/:id', cityController.getCityById);

@@ -97,19 +97,12 @@ const getHotelsByCityId = async (req, res) => {
     try {
         const { cityId } = req.params;
 
-        // Log the cityId to ensure it's passed correctly
-        console.log('CityId:', cityId);
-
         const result = await cityByHotelService.getHotelsByCityId(cityId);
-
-        // Log the result before mapping to see the raw data
-        console.log('Result:', result);
 
         if (!result || result.length === 0) {
             return res.status(404).json({ message: 'No hotels found for the given city ID' });
         }
 
-        // Add base URL for images and parse JSON fields
         const baseUrl = `${req.protocol}://${req.get('host')}/uploads`;
         const processedResult = result.map(item => ({
             ...item,
@@ -117,9 +110,6 @@ const getHotelsByCityId = async (req, res) => {
             facilities: JSON.parse(item.facilities),
             roomTypes: JSON.parse(item.roomTypes),
         }));
-
-        // Log the processed result to verify the output
-        console.log('Processed Result:', processedResult);
 
         res.status(200).json(processedResult);
     } catch (error) {
@@ -135,7 +125,6 @@ const updateCityByHotelById = async (req, res) => {
         const { cityId, hotelName, originalPrice, discountPercentage, rating, facilities, roomTypes, description } = req.body;
         const images = req.files ? req.files.map(file => file.filename) : [];
 
-        // Perform the update operation
         const result = await cityByHotelService.updateCityByHotelById(id, {
             cityId,
             hotelName,
@@ -148,20 +137,17 @@ const updateCityByHotelById = async (req, res) => {
             description,
         });
 
-        // Check if the update was successful
         if (!result.affectedRows) {
             return res.status(404).json({ message: 'CityByHotel not found' });
         }
 
-        // Fetch the updated data from the database
         const updatedData = await cityByHotelService.getCityByHotelById(id);
 
-        // Parse the fields that were stored as strings
         const processedUpdatedData = {
             ...updatedData,
-            images: JSON.parse(updatedData.images).map(image => `${req.protocol}://${req.get('host')}/uploads/${image}`), // Full URL for images
-            facilities: JSON.parse(updatedData.facilities), // Parse JSON string to array
-            roomTypes: JSON.parse(updatedData.roomTypes), // Parse JSON string to array
+            images: JSON.parse(updatedData.images).map(image => `${req.protocol}://${req.get('host')}/uploads/${image}`),
+            facilities: JSON.parse(updatedData.facilities),
+            roomTypes: JSON.parse(updatedData.roomTypes),
         };
 
         res.status(200).json({

@@ -3,7 +3,6 @@ const db = require('../config/db');
 const createuser = async (data) => {
     const { username, email, mobile_number, password } = data;
 
-    // Check if the user already exists
     const existingUser = await getUserByEmail(email);
     if (existingUser) {
         throw new Error('Email already in use');

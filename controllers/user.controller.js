@@ -23,7 +23,7 @@ const loginUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const users = await userService.getAllUsers(); // Fetch users from service
+        const users = await userService.getAllUsers();
         res.status(200).json({ message: 'Users fetched successfully', users });
     } catch (err) {
         res.status(500).json({ message: err.message });

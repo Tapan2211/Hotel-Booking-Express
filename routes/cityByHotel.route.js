@@ -6,7 +6,6 @@ const cityByHotelController = require('../controllers/cityByHotel.controller');
 const validationMiddleware = require('../middlewares/validationMiddleware');
 const cityByHotelValidation = require('../validations/cityByHotel.validation');
 
-// Define routes
 router.post(
     '/create',
     upload.array('images', 5),
@@ -24,4 +23,4 @@ router.put(
 );
 router.delete('/:id', cityByHotelController.deleteCityByHotelById);
 
-module.exports = router; // Correct export
+module.exports = router; 
